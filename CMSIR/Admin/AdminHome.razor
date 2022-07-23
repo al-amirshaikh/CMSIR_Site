@@ -1,0 +1,117 @@
+﻿@page "/AdminHome"
+@using CMSIR.IService
+@inject IFileUpload fileupload;
+@inject IDBOperation _db;
+
+
+<div class="container-fluid">
+ 
+   <h3>AdminHome</h3> 
+<EditForm Model=@model OnValidSubmit=@FormSubmitted>
+  <div class="mb-2">
+    <label for="exampleInputEmail1" class="form-label">Name</label>
+    <input @bind-value="model.Name_" type="text" class="form-control" id="Name_" aria-describedby="emailHelp/">
+    
+  </div>
+  <div class="mb-2">
+    <label for="Rol" class="form-label">Job Role</label>
+    <input @bind-value="model.JobRole" type="text" class="form-control" id="JobRole"/>
+  </div>
+    <div class="mb-2">
+       
+  
+
+
+    <BlazorInputFile.InputFile OnChange="Ghandel"></BlazorInputFile.InputFile>
+    
+
+  </div>
+  <div class="mb-3">
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</EditForm>
+
+
+
+<div class="d-grid gap-3">
+
+
+<table class="table table-bordered border-primary">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">JobRole</th>
+      <th scope="col">Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        @if(ReadResume!=null)
+        {
+        
+       @foreach(var item in ReadResume)
+       {
+          <td>@item.ID</td>
+          <td>@item.Name</td>
+          <td>@item.JobRol</td>
+          <td>@item.Rusume</td>
+       
+
+       }
+        }
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+@code 
+{
+    IFileListEntry file;
+    List<DisplayModel> ReadResume;
+
+
+
+    protected override  async Task OnInitializedAsync()
+    {
+    
+        ReadResume =  await _db.GetData();
+    }
+
+    ResumeModel model = new ResumeModel();
+    public ResumeModel dis = new ResumeModel();
+    async Task Ghandel(IFileListEntry[] files)
+    {
+
+        file = files.FirstOrDefault();
+        if(file!=null)
+        {
+            await fileupload.UploadAsync(file);
+            dis.Rusume_N = file.Name;
+
+        }
+
+    }
+
+    public async Task  FormSubmitted()
+    {
+        string path = $"ResumeFiles/{dis.Rusume_N}";
+        DisplayModel p = new DisplayModel
+            {
+                Name = model.Name_,
+                JobRol = model.JobRole,
+                Rusume = dis.Rusume_N.ToString(),
+                Paths = path
+
+            };
+
+        await _db.InData(p);
+        ReadResume.Add(p);
+
+    
+        }
+
+
+
+
+}
