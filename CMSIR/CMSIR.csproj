@@ -9,14 +9,18 @@
   <ItemGroup>
     <PackageReference Include="BlazorInputFile" Version="0.2.0" />
     <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="IgniteUI.Blazor" Version="22.1.41" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="6.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Windows" Version="20.2.0.39" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ResumeFiles\" />
+    <Folder Include="User\" />
   </ItemGroup>
 
 </Project>

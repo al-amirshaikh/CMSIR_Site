@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using CMSIR.IService;
 using CMSIR.Admin;
+using Syncfusion.Blazor;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,11 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<IFileUpload, FileUpload>();
-builder.Services.AddTransient<IDBOperation, DBOperation>();
 builder.Services.AddTransient<IResumeModel, ResumeModel>();
 builder.Services.AddTransient<IDisplayModel, DisplayModel>();
-
-
+builder.Services.AddTransient<IDBOperation, DBOperation>();
+builder.Services.AddOptions();
+builder.Services.AddAuthorizationCore();
+builder.Services.AddSyncfusionBlazor();
 
 var app = builder.Build();
 

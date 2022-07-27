@@ -1,0 +1,15 @@
+.navbar-dark .nav-item .nav-link[b-6drs6a80fx] {
+    color: #fff;
+  }
+  
+  .navbar-dark .nav-item .nav-link:hover[b-6drs6a80fx] {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    border-radius: 0.25rem;
+    color: #fff;
+  }
+  
+  .fa-li[b-6drs6a80fx] {
+    position: relative;
+    left: 0;
+  }

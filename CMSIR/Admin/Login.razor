@@ -1,0 +1,111 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using CMSIR.IService
+@inject NavigationManager _navigationManager
+@page "/login"
+@inject IDBOperation _db
+
+<PageTitle>Login</PageTitle>
+
+
+
+
+<div class="wrapper">
+    <div class="logo">
+        <img src="/Icons/man.png" />
+    </div>
+    <div class="text-center mt-4 name">
+        User's Account'
+    </div>
+
+    <EditForm Model="@s" OnValidSubmit="@auth" class="p-3 mt-3">
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <InputText @bind-Value="s.username" type="text" name="userName" id="userName" placeholder="Username" />
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <InputText @bind-Value="s.pass" type="password" name="password" id="pwd" placeholder="Password" />
+        </div>
+
+        <button class="btn mt-3">Login</button>
+    </EditForm>
+
+
+</div>
+
+
+
+
+
+@code 
+{
+
+    string pass = "";
+    string username = "";
+    private string eu = "";
+    private string ep = "";
+    private UserA s = new UserA();
+
+    string title = "";
+
+
+    public List<UserA> user;
+    public async Task auth()
+    {
+
+
+
+        
+
+        _db.ReadU(s.username);
+        _db.ReadP(s.pass);
+       
+        user = await _db.GetDataR(s.username,s.pass);
+        
+
+
+        foreach(var test in user)
+        {
+           eu = test.username;
+           ep = test.pass;
+
+
+        }
+ 
+        if (s.username.Equals(eu) && s.pass.Equals(ep))
+        {
+            title = "your Are Authorized";
+        _navigationManager.NavigateTo("/UserHome");
+        }
+        else
+        {
+            title = "Please Chek your pass or UserName";
+        }
+        
+
+
+
+
+    }
+
+
+   protected override  void OnInitialized()
+       {
+  string dic =  System.IO.Directory.GetCurrentDirectory()+"/Admin/_sec.txt"; 
+  string dic1 =  System.IO.Directory.GetCurrentDirectory()+"/Admin/pa.txt"; 
+
+     
+using (FileStream fs = File.Create(dic))
+ {
+
+ }using (FileStream fs = File.Create(dic1))
+ {
+
+ }
+
+        }
+
+
+ 
+
+}

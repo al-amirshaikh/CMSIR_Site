@@ -1,83 +1,173 @@
-﻿@page "/AdminHome"
+﻿@page "/AdminHomes"
 @using CMSIR.IService
-@inject IFileUpload fileupload;
-@inject IDBOperation _db;
+@using CMSIR
+@using System
+@inject IFileUpload fileupload
+@inject IDBOperation _db
+@using Dapper
+@using System.Data.SqlClient
 
+
+
+
+
+<PageTitle>AdminHome</PageTitle>
 
 <div class="container-fluid">
  
-   <h3>AdminHome</h3> 
-<EditForm Model=@model OnValidSubmit=@FormSubmitted>
-  <div class="mb-2">
-    <label for="exampleInputEmail1" class="form-label">Name</label>
-    <input @bind-value="model.Name_" type="text" class="form-control" id="Name_" aria-describedby="emailHelp/">
-    
-  </div>
-  <div class="mb-2">
-    <label for="Rol" class="form-label">Job Role</label>
-    <input @bind-value="model.JobRole" type="text" class="form-control" id="JobRole"/>
-  </div>
-    <div class="mb-2">
-       
-  
-
-
-    <BlazorInputFile.InputFile OnChange="Ghandel"></BlazorInputFile.InputFile>
-    
-
-  </div>
-  <div class="mb-3">
-  <button type="submit" class="btn btn-primary">Submit</button>
-  </div>
-</EditForm>
 
 
 
-<div class="d-grid gap-3">
+
+@if(error.Er!=null)
+{
+        <p>@error.Er</p>
+}
+         @if (username.Equals(eu) && pass.Equals(ep))
+    {
+        <EditForm Model=@model OnValidSubmit=@FormSubmitted>
+            <div class="mb-2">
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                <input  @bind-value="model.Name_" type="text" class="form-control" id="Name" aria-describedby="emailHelp"></input>
+
+            </div>
+            <div class="mb-2">
+                <label for="Rol" class="form-label">Job Role</label>
+                <input @bind-value="model.JobRole" type="text" class="form-control" id="JobRol"/>
+            </div>
+            <div class="mb-2">
 
 
-<table class="table table-bordered border-primary">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">JobRole</th>
-      <th scope="col">Title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        @if(ReadResume!=null)
-        {
-        
-       @foreach(var item in ReadResume)
-       {
-          <td>@item.ID</td>
-          <td>@item.Name</td>
-          <td>@item.JobRol</td>
-          <td>@item.Rusume</td>
-       
 
-       }
-        }
-    </tr>
-  </tbody>
-</table>
+
+                <BlazorInputFile.InputFile OnChange="Ghandel"></BlazorInputFile.InputFile>
+
+
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">@Title</button>
+                
+            </div>
+        </EditForm>
+
+
+
+        <div class="table-responsive">
+
+
+            <table class="table">
+                <thead class="table table-bordred table-striped">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">JobRole</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Edit/Download</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ReadResume != null)
+                    {
+                        @foreach (var item in ReadResume)
+                        {
+                            <tr>
+
+                                <td>@item.ID</td>  
+                                <td>@item.Name_</td>   
+                                <td>@item.JobRole</td>
+                                <td>@item.Rusume_N</td>
+
+
+              <td>
+                <div class="d-flex flex-row  mb-3">
+                  <button @onclick="@(e=> EditF(@item.ID))" type="button" class="btn btn-success">
+                
+                    Edit</button>
+             
+                  <button type="button" @onclick="@(e=>Delt(@item.ID))" class="btn  btn-danger">
+                  Delete
+                  </button>
+                </div>
+              </td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+       <p>Please Login you Account</p>
+    }
+
 </div>
-</div>
+
+    
 @code 
 {
-    IFileListEntry file;
-    List<DisplayModel> ReadResume;
+    string pass = "";
+    string username = "";
+    private string eu = "";
+    private string ep = "";
+     private string Title= "Submit";
 
+
+
+     private int iid ;
+    IFileListEntry file;
+    private List<DisplayModel> ReadResume;
+    private List<UserA> data;
+
+
+
+
+  
 
 
     protected override  async Task OnInitializedAsync()
     {
-    
-        ReadResume =  await _db.GetData();
+            Title = "Submit";
+             Read_();
+            Read_P();
+                
+            data = await _db.GetDataAd(username,pass);
+            foreach(var item in data)
+            {
+                  eu = item.username;
+                  ep = item.pass;
+            }
+
+       
+            ReadResume = await _db.GetData();
+R();
+
+        _db.ReadU("())($@!)()!+_!_)");
+       _db.ReadP("())($@!)()34!+_!_)");
+
+        
     }
 
+
+
+    public void R()
+{
+    string dic =  System.IO.Directory.GetCurrentDirectory()+"/Admin/_sec.txt"; 
+  string dic1 =  System.IO.Directory.GetCurrentDirectory()+"/Admin/pa.txt"; 
+
+     
+using (FileStream fs = File.Create(dic))
+ {
+
+ }using (FileStream fs = File.Create(dic1))
+ {
+
+ }
+}
+
+    UserA se = new UserA();
     ResumeModel model = new ResumeModel();
     public ResumeModel dis = new ResumeModel();
     async Task Ghandel(IFileListEntry[] files)
@@ -95,12 +185,17 @@
 
     public async Task  FormSubmitted()
     {
+
+    
+        
         string path = $"ResumeFiles/{dis.Rusume_N}";
+    if(Title=="Submit")
+    {
         DisplayModel p = new DisplayModel
             {
-                Name = model.Name_,
-                JobRol = model.JobRole,
-                Rusume = dis.Rusume_N.ToString(),
+                Name_ = model.Name_,
+                JobRole = model.JobRole,
+                Rusume_N = dis.Rusume_N.ToString(),
                 Paths = path
 
             };
@@ -108,10 +203,113 @@
         await _db.InData(p);
         ReadResume.Add(p);
 
+          model = new ResumeModel();
+    }
+    else if(Title =="Update")
+    {
+
+         await DataV(iid);
+    }
+
+
+    Title = "Submit";
+
+    }
+
+
+
+    public void Read_()
+    {
+string dic =  System.IO.Directory.GetCurrentDirectory()+"/Admin/_sec.txt"; 
+
+  
+        string text = File.ReadLines(dic).First();
+        username = text;
+
+
+
+    }
+
+
+
+    public void  Read_P()
+    {
+        string dic =  System.IO.Directory.GetCurrentDirectory()+"/Admin/pa.txt"; 
+        string text = File.ReadLines(dic).First();
+       pass = text;
+
+    }
+
+  public async Task EditF(int id)
+  {
     
-        }
+
+     Title = "Update";
+
+
+     iid  = id;
+
+    List<DisplayModel> Edit;
+    
+
+     Edit = await _db.EditView(id);
+
+foreach(var item in Edit)
+{
+      model.Name_ = item.Name_;
+      model.JobRole = item.JobRole;
+}
 
 
 
+
+  }
+
+
+   public async Task DataV(int id)
+   {
+             
+     
+         string path = $"ResumeFiles/{dis.Rusume_N}";
+        DisplayModel p = new DisplayModel
+            {
+                Name_ = model.Name_,
+                JobRole = model.JobRole,
+                Rusume_N = dis.Rusume_N.ToString(),
+                Paths = path
+
+            };
+
+        await _db.Update(p,id);
+     
+
+     ReadResume = await _db.GetData();
+
+        model = new ResumeModel();
+   }
+
+
+
+
+
+  
+
+
+   public async Task Delt(int id)
+  {
+
+
+      await _db.Delete(id);
+     ReadResume = await _db.GetData();
+
+      
+
+  }
+  
+
+  public async Task Searchs()
+  {
+    ReadResume = await _db.Search(model.Name_);
+  }
 
 }

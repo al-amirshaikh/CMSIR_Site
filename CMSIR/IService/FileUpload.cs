@@ -14,7 +14,10 @@ namespace CMSIR.IService
 
         public async Task UploadAsync(IFileListEntry fileEntry)
         {
-            var path = Path.Combine(_envirment.ContentRootPath, "ResumeFiles", fileEntry.Name);
+            try{
+
+            
+            var path = Path.Combine(_envirment.WebRootPath, "ResumeFiles", fileEntry.Name);
             var ms = new MemoryStream();
             await fileEntry.Data.CopyToAsync(ms);
 
@@ -22,6 +25,12 @@ namespace CMSIR.IService
             {
 
                 ms.WriteTo(file);
+
+            }
+            }catch(Exception ex)
+            {
+
+                 error.Er = ex.Message;
 
             }
 

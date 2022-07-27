@@ -1,0 +1,177 @@
+﻿@page "/UserHome"
+@using CMSIR.IService
+@inject IDBOperation _db
+@inject IJSRuntime js
+
+<PageTitle>Resume's</PageTitle>
+<div class="container-fluid">
+
+
+@if(username.Equals(eu) && pass.Equals(ep))
+{
+
+
+
+
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">JobRole</th>
+          <th scope="col">Resume</th>
+          <th scope="col">View|Download</th>
+
+
+        </tr>
+      </thead>
+      @if (Rd==null)
+
+      {
+         <p>Loading....</p>
+
+      }else if(Rd!=null)
+      {
+        <tbody>
+
+          @foreach (var item in Rd)
+          {
+            <tr>
+
+              <td>@item.ID</td>
+              <td>@item.Name_</td>
+              <td>@item.JobRole</td>
+              <td>@item.Rusume_N</td>
+              
+
+
+              <td>
+                <div class="d-flex flex-row  mb-3">
+                  <button @onclick="@(e=> ShowOnCurrenPage(@item.Paths))" type="button" class="btn btn-primary">
+                    View
+                  </button>
+                  <button type="button" @onclick="@(e=>DownloadCurrent(@item.Paths, @item.Rusume_N))" class="btn  btn-success">
+                    Download
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+
+        </tbody>
+      }
+    
+    </table>
+      
+  </div>
+  
+}
+else
+{
+   <p>Please Login you Account</p>
+} 
+ </div>
+
+
+@code
+{
+
+  private List<IService.DisplayModel> Rd;
+    private DisplayModel model;
+    string eu = "";
+    string username = "";
+    string pass = "";
+    string ep = "";
+    private UserA s = new UserA();
+    private List<UserA> user;
+   protected override async Task OnInitializedAsync()
+  {
+
+    Read_();
+    Read_P();
+     user = await _db.GetDataR(username,pass);
+        
+
+
+        foreach(var test in user)
+        {
+           eu = test.username;
+           ep = test.pass;
+
+
+        }
+         Rd = await _db.GetData();
+
+R();
+
+        _db.ReadU("())($@!)()!+_!_)");
+       _db.ReadP("())($@!)()34!+_!_)");
+
+
+    
+  }
+
+public void R()
+{
+    string dic =  System.IO.Directory.GetCurrentDirectory()+"/Admin/_sec.txt"; 
+  string dic1 =  System.IO.Directory.GetCurrentDirectory()+"/Admin/pa.txt"; 
+
+     
+using (FileStream fs = File.Create(dic))
+ {
+
+ }using (FileStream fs = File.Create(dic1))
+ {
+
+ }
+}
+
+
+  public void ShowOnCurrenPage(string pdfname)
+  {
+      
+      PdfV.NewTab(js,pdfname);
+  }
+
+  public void DownloadCurrent(string pdfname,string name)
+  {
+    PdfV.DownloadPdf(js,pdfname,name);
+
+  }
+
+
+      public void Read_()
+    {
+string dic =  System.IO.Directory.GetCurrentDirectory()+"/Admin/_sec.txt"; 
+
+  
+        string text = File.ReadLines(dic).First();
+        username = text;
+
+
+
+    }
+
+
+
+    public void  Read_P()
+    {
+        string dic =  System.IO.Directory.GetCurrentDirectory()+"/Admin/pa.txt"; 
+        string text = File.ReadLines(dic).First();
+        pass = text;
+
+    }
+
+   public async Task Searchs()
+   {
+
+        Rd =  await _db.Search(model.Name_);
+
+
+   }
+
+
+}
