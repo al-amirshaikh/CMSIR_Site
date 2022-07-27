@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0akjYJXMHgNxwZuqBsa3mF4szX2Ca3NlxuchQm+nX8I=",
+  "Hash": "UrRcLE6+XPDfHgv4eNK+brKUpz8B+9YDshAh9XZ/8wk=",
   "Source": "CMSIR",
   "BasePath": "_content/CMSIR",
   "Mode": "Default",
@@ -1836,6 +1836,23 @@
       "OriginalItemSpec": "wwwroot\\js\\pdfgen.js"
     },
     {
+      "Identity": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\ResumeFiles\\.gitignore",
+      "SourceId": "CMSIR",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\",
+      "BasePath": "_content/CMSIR",
+      "RelativePath": "ResumeFiles/.gitignore",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ResumeFiles\\.gitignore"
+    },
+    {
       "Identity": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\ResumeFiles\\0_lx1Hvqit6CI9_EWv.jpg",
       "SourceId": "CMSIR",
       "SourceType": "Discovered",
@@ -1919,6 +1936,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\ResumeFiles\\EAadhaar_2006240717496220211221130720_20072022122323-unlocked.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\ResumeFiles\\File (2).jfif",
+      "SourceId": "CMSIR",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\",
+      "BasePath": "_content/CMSIR",
+      "RelativePath": "ResumeFiles/File (2).jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ResumeFiles\\File (2).jfif"
+    },
+    {
+      "Identity": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\ResumeFiles\\File.pdf",
+      "SourceId": "CMSIR",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\",
+      "BasePath": "_content/CMSIR",
+      "RelativePath": "ResumeFiles/File.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ResumeFiles\\File.pdf"
     },
     {
       "Identity": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\ResumeFiles\\File.svg",
@@ -2040,6 +2091,23 @@
       "OriginalItemSpec": "wwwroot\\ResumeFiles\\overview-of-software-development-life-cycle.jpg"
     },
     {
+      "Identity": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\ResumeFiles\\pass.txt",
+      "SourceId": "CMSIR",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\",
+      "BasePath": "_content/CMSIR",
+      "RelativePath": "ResumeFiles/pass.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ResumeFiles\\pass.txt"
+    },
+    {
       "Identity": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\ResumeFiles\\Photo_1653938588888.png",
       "SourceId": "CMSIR",
       "SourceType": "Discovered",
@@ -2123,6 +2191,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\ResumeFiles\\top-programming-languages.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\ResumeFiles\\user-345-16.png",
+      "SourceId": "CMSIR",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\",
+      "BasePath": "_content/CMSIR",
+      "RelativePath": "ResumeFiles/user-345-16.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ResumeFiles\\user-345-16.png"
     },
     {
       "Identity": "C:\\Users\\AL-AMIR\\source\\repos\\CMSIR\\CMSIR\\wwwroot\\ResumeFiles\\user-345.svg",
